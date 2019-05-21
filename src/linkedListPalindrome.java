@@ -15,18 +15,18 @@ public class linkedListPalindrome {
     static boolean solution(reverseLinkedList.ListNode n) {
         Stack<reverseLinkedList.ListNode> s = new Stack();
 
-        while(n!=null) {
-            s.push(n);
-            n=n.next;
+        Stack<reverseLinkedList.ListNode> stack = new Stack<>();
+
+        reverseLinkedList.ListNode copy = n;
+
+        while (copy!= null) {
+            stack.push(copy);
+            copy= copy.next;
         }
 
-        int start=0;
-        int end = s.size()-1;
-
-        while(start<end) {
-            if (s.get(start).val!=s.get(end).val) return false;
-            start++;
-            end--;
+        while(!stack.isEmpty()) {
+            if (stack.pop().val!=n.val) return false;
+            n = n.next;
         }
         return true;
     }
